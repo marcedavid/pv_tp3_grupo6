@@ -39,6 +39,10 @@ const Productos = () => {
     console.log(productosConIVA);
   };
 
+  const ordenarPorPrecio = () => {
+    const productosOrdenados = [...productos].sort((a, b) => a.precio - b.precio);
+    setProductos(productosOrdenados);
+  }; 
 
   return (
     <div>
@@ -48,6 +52,7 @@ const Productos = () => {
         Mayor a $20
       </label>
        <button onClick={aplicarIVA}>Aplicar IVA</button>
+       <button onClick={ordenarPorPrecio}>Ordenar por precio (menor a mayor)</button>
       <table border="1" cellPadding="10" style={{ marginTop: "20px", width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
