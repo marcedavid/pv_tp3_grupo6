@@ -23,17 +23,31 @@ const Productos = () => {
     }
   };
 
+  const productosConIVA = productos.map(producto => {
+    return {
+      descripcion: producto.descripcion,
+      precio: parseFloat((producto.precio * 1.21).toFixed(2)) // Calcular precio con IVA y redondear a 2 decimales
+    };
+  });
+
+  const aplicarIVA = () => {
+    const productosConIVA = productos.map(producto => ({
+      descripcion: producto.descripcion,
+      precio: parseFloat((producto.precio * 1.21).toFixed(2)) 
+    }));
+    setProductos(productosConIVA); 
+    console.log(productosConIVA);
+  };
+
+
   return (
     <div>
       <h2>Productos</h2>
       <label>
-        <input
-          type="checkbox"
-          checked={filtrar}
-          onChange={handleCheckboxChange}
-        />
+        <input type="checkbox" checked={filtrar} onChange={handleCheckboxChange}/>
         Mayor a $20
       </label>
+       <button onClick={aplicarIVA}>Aplicar IVA</button>
       <table border="1" cellPadding="10" style={{ marginTop: "20px", width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
