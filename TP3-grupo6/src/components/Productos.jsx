@@ -11,6 +11,8 @@ const Productos = () => {
 
   const [productos, setProductos] = useState(productosIniciales);
   const [filtrar, setFiltrar] = useState(false);
+  const [ivaAplicado, setIvaAplicado] = useState(false); // Estado para saber si el IVA está aplicado
+
 
   const handleCheckboxChange = (event) => {
     const isChecked = event.target.checked;
@@ -21,6 +23,7 @@ const Productos = () => {
     } else {
       setProductos(productosIniciales);
     }
+    setIvaAplicado(false); //Al cambiar el filtro, quitamos cualquier IVA aplicado
   };
 
   const productosConIVA = productos.map(producto => {
@@ -31,12 +34,20 @@ const Productos = () => {
   });
 
   const aplicarIVA = () => {
+     if (!ivaAplicado) { // Si el IVA no está aplicado
     const productosConIVA = productos.map(producto => ({
       descripcion: producto.descripcion,
       precio: parseFloat((producto.precio * 1.21).toFixed(2)) 
     }));
     setProductos(productosConIVA); 
     console.log(productosConIVA);
+  } else { // Si el IVA ya estaba aplicado
+      setProductos(filtrar
+        ? productosIniciales.filter(producto => producto.precio > 20)
+        : productosIniciales
+      );
+    }
+    setIvaAplicado(!ivaAplicado); // Invertimos el estado de IVA aplicado
   };
 
   const ordenarPorPrecio = () => {
@@ -51,7 +62,9 @@ const Productos = () => {
         <input type="checkbox" checked={filtrar} onChange={handleCheckboxChange}/>
         Mayor a $20
       </label>
-       <button onClick={aplicarIVA}>Aplicar IVA</button>
+       <button onClick={aplicarIVA}>
+        {ivaAplicado ? "Quitar IVA" : "Aplicar IVA"} {/* Texto dinámico según estado */}
+      </button>
        <button onClick={ordenarPorPrecio}>Ordenar por precio (menor a mayor)</button>
       <table border="1" cellPadding="10" style={{ marginTop: "20px", width: "100%", borderCollapse: "collapse" }}>
         <thead>
