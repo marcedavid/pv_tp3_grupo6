@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TaskInput from './components/TaskInput';
 import TaskList from './components/TaskList';
+import Productos from './components/Productos';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -30,6 +31,7 @@ function App() {
     <div>
       <TaskInput onAdd={addTask} />
       <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
+      <Productos />
     </div>
   );
 }
