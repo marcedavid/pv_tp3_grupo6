@@ -3,3 +3,4 @@
  Alejandro Cuellar - usuario :DFAle
  Mayra Zalazar - usuario: MayraDamarisZalazar
  Moreno Candela - usuario: candelampv
+ David Marcelo - usuario: marcedavid
