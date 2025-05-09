@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TaskInput from './components/TaskInput';
 import TaskList from './components/TaskList';
 import Productos from './components/Productos';
+import './styles/App.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -34,6 +35,7 @@ function App() {
       <Productos />
     </div>
   );
+
 }
 
 export default App;

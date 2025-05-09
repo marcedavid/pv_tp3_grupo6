@@ -23,6 +23,7 @@ function TaskInput({ onAdd }) {
       <button type="submit">Agregar</button>
     </form>
   );
+
 }
 
 export default TaskInput;
