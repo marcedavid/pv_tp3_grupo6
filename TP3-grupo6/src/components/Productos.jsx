@@ -66,7 +66,22 @@ const Productos = () => {
 
     setProductos(nuevosProductos);
   };
+  
+  const agregarProducto = () => {
+    const yaExiste = productos.some(
+    producto => producto.descripcion === "Parlante Bluetooth"
+  );
 
+    if (!yaExiste) {
+      const nuevoProducto = {
+        descripcion: "Parlante Bluetooth",
+        precio: 59000.90
+      };
+      setProductos([...productos, nuevoProducto]);
+    } else {
+      console.log("El producto ya fue agregado.");
+    }
+  };
   return (
     <div>
       <h2>Productos</h2>
@@ -81,6 +96,7 @@ const Productos = () => {
       <button onClick={eliminarProductoMasBarato} style={{ marginLeft: "10px" }}>
         Eliminar producto más barato
       </button>
+      <button onClick={agregarProducto} style={{ marginLeft: "10px" }}>Agregar Parlante Bluetooth</button>
       <table border="1" cellPadding="10" style={{ marginTop: "20px", width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
