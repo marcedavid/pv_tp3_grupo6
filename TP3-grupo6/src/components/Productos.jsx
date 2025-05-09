@@ -54,6 +54,18 @@ const Productos = () => {
     const productosOrdenados = [...productos].sort((a, b) => a.precio - b.precio);
     setProductos(productosOrdenados);
   }; 
+    // Nueva función para eliminar el producto con el precio más bajo
+  const eliminarProductoMasBarato = () => {
+    if (productos.length === 0) return;
+
+    // Encontrar el precio mínimo
+    const precioMinimo = Math.min(...productos.map(producto => producto.precio));
+
+    // Filtrar todos los productos que NO tienen el precio mínimo
+    const nuevosProductos = productos.filter(producto => producto.precio !== precioMinimo);
+
+    setProductos(nuevosProductos);
+  };
 
   return (
     <div>
@@ -66,6 +78,9 @@ const Productos = () => {
         {ivaAplicado ? "Quitar IVA" : "Aplicar IVA"} {/* Texto dinámico según estado */}
       </button>
        <button onClick={ordenarPorPrecio}>Ordenar por precio (menor a mayor)</button>
+      <button onClick={eliminarProductoMasBarato} style={{ marginLeft: "10px" }}>
+        Eliminar producto más barato
+      </button>
       <table border="1" cellPadding="10" style={{ marginTop: "20px", width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
